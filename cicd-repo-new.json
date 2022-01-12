@@ -1,0 +1,33 @@
+{
+	"family": "cicd-repo-new",
+	"taskRoleArn": "arn:aws:iam::013424092965:role/task_role",
+	"containerDefinitions": [{
+		"name": "cicd-repo-new",
+		"image": "013424092965.dkr.ecr.ap-south-1.amazonaws.com/cicd-repo-new:GIT_COMMIT",
+		"cpu": 300,
+		"memory": 400,
+		"memoryReservation": 300,
+		"volumesFrom": [],
+		"portMappings": [{
+			"hostPort": 0,
+			"containerPort": 3000,
+			"protocol": "tcp"
+		}],
+		"essential": true,
+		"logConfiguration": {
+			"logDriver": "awslogs",
+			"options": {
+			  "awslogs-group": "GROUP_NAME",
+			  "awslogs-region": "ap-south-1",
+			  "awslogs-stream-prefix": "cicd-repo-new"
+			}
+		  },
+		"environment": [
+			{
+				"name": "START_CMD",
+				"value": "startup_cmd"
+			}
+		],
+		"mountPoints": []
+	}]
+}
